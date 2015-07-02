@@ -43,6 +43,10 @@
 				{{#each groupList}}
 					<li>  {{#link-to "todos" this}} {{this}} {{/link-to}} </li>
 				{{/each}}
+				
+				<li>
+				  {{#link-to "index"}} &lt; &lt; Back {{/link-to}}
+				</li>
 			</ul>
 			
 		</script>
@@ -81,7 +85,7 @@
 			
 			<div class="row">
 				  <ul>
-				   {{#each list}}
+				   {{#each model.list}}
 				   		<li>
 						   <div class="checkbox">
 							   <lable >
