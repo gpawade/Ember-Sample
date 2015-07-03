@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="lib/handlebars.js"></script>
+		<script type="text/javascript" src="lib/ember.js"></script>
+		<script type="text/javascript" src="lib/githubapp.js"></script>
+	</head>
+	<body>
+		<h3>Github User</h3>
+		
+		
+		<script type="text/x-handlebars">
+			<br/>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<form {{action search userfilter on="submit"}} >
+							<div class="form-group">
+								{{input class="form-control" placeholder="Search User" value=userfilter}}
+							</div>
+						</form>
+					</div>
+				</div>
+				{{outlet}}
+			</div>	
+			
+		</script>
+		
+		<script type="text/x-handlebars" data-template-name="search">
+			<div class="row">
+					<div class="col-sm-4">
+						{{partial "filterresult"}}	
+					</div>
+					<div class="col-sm-8">
+						{{outlet}}
+					</div>
+				</div>
+		</script>		
+		
+		
+		<script type="text/x-handlebars" data-template-name="_filterresult">
+			<h6>Filter Result -</h6>
+			<ul class="list-unstyled">
+			 {{#each model.items}}
+			 	<li>
+				 	<div class="row">
+					 	<div class="col-sm-3">
+						    <img {{bindAttr src=avatar_url}}  height="40" />
+						 </div>
+						 <div class="col-sm-9">
+						 	{{#link-to "search.details" this}}
+						 		{{unbound login}}
+							 {{/link-to}}
+						 </div>
+					 </div>
+				 </li>
+			 {{/each}}
+			 </ul>
+		</script>
+		
+		<script type="text/x-handlebars" data-template-name="search/details">
+			<div class="row">
+				<div class="col-sm-4">
+				    <img {{bindAttr src=avatar_url}}  height="200" />
+				 </div>
+				 <div class="col-sm-6">
+				 	<div class="form-group">
+					 	 <label>Login : </lable>
+						  <span>{{login}}</span>
+					 </div>
+					 <div class="form-group">
+					    <a {{bindAttr href=html_url}} target="__blank">{{html_url}}</a>
+					 </div>
+				 </div>
+			</div>
+			
+			
+		</script>
+		
+	</body>
+
+</html>
