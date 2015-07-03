@@ -1,0 +1,150 @@
+<html>
+	<head>
+		<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="lib/handlebars.js"></script>
+		<script type="text/javascript" src="lib/ember.js"></script>		
+		<script type="text/javascript" src="lib/ember-validations.min.js"></script>
+		
+		<script type="text/javascript" src="lib/routepoc.js"></script>	   
+	</head>
+	<body>
+		
+		<div id="appId" ></div>
+		<script type="text/x-handlebars">
+			<nav class="navbar navbar-inverse">
+			  <div class="container-fluid">
+			  		<div class="navbar-header">
+				      <a class="navbar-brand" href="#">
+				        Route Text
+				      </a>
+				    </div>
+					<div class="collapse navbar-collapse" >
+				  		 <ul class="nav navbar-nav">
+						   <li>{{#link-to "index"}}Home{{/link-to}}</li>
+						   <li>{{#link-to "hotel"}}Hotel{{/link-to}}</li>
+						   <li>{{#link-to "github"}}Github{{/link-to}}</li>
+						 </ul>
+					 </div>
+			  </div>
+			 </nav>
+			 <div class="container">
+			 	{{outlet}}
+			 </div>
+		</script>
+		
+		<script type="text/x-handlebars" data-template-name="index">
+				<h4>Welcome to Ember Route Test</h4>
+		</script>
+		
+		
+		<script type="text/x-handlebars" data-template-name="hotel">
+				
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="row">
+							<div class="col-sm-6">
+								<span class="h2">Hotel</span>
+							</div>
+							<div class="col-sm-6 text-right">
+									{{#link-to "hotel.new" class="btn btn-primary"}} Add New {{/link-to}}
+							</div>
+						</div>
+						<br/>
+						<div class="table-responsive">
+							{{partial "hotellist"}}
+						</div>
+					</div>
+					<div class="col-sm-6">
+						{{outlet}}
+					</div>
+				</div>
+		</script>
+		
+		<script type="text/x-handlebars" data-template-name="_hotellist">
+			<table class="table table-condesed table-bordered">
+					<thead>
+						<tr>
+							<th>#Id</th>
+							<th>Name</th>
+							<th>Rating</th>
+							<th>Address</th>
+							<th>City</th>
+							<th>Action</th>
+						<tr>
+					</thead>
+					<tbody>
+					{{#each model}}
+						<tr>
+							<td>{{{id}}}</td>
+							<td>{{name}}</td>
+							<td>{{{rating}}}</td>
+							<td>{{{address}}}</td>
+							<td>{{{city}}}</td>
+							<td>
+								{{#link-to "hotel.edit" this }}
+								   <i class="glyphicon glyphicon-edit"> </i>
+								{{/link-to}}
+							</td>
+						</tr>
+					{{/each}}
+					</tbody>
+				</table>
+		</script>
+		
+		<script type="text/x-handlebars" data-template-name="hotel/new">
+			<h3>New Hotel Details</h3>
+			{{partial "hoteldetails"}}
+		</script>
+		
+		<script type="text/x-handlebars" data-template-name="hotel/edit">
+			<h3>Edit Hotel Details</h3>
+			{{partial "hoteldetails"}}
+		</script>
+		
+		
+		<script type="text/x-handlebars" data-template-name="_hoteldetails">
+				<div>
+					<ul class="bg-danger">
+						{{#each errors}}
+							
+							<li>{{this}} </li>	
+								
+						
+						{{/each}}
+					</ul>
+				</div>
+				<form>
+					<div class="form-group" >
+						<label for="">Hotel Id</label>
+						{{input class="form-control" placeholder="Hotel Id" value=id}}
+					</div>
+					
+					<div class="form-group" >
+						<label for="">Name</label>
+						{{input class="form-control" placeholder="Name" value=name}}
+					</div>
+					<div class="form-group">
+						<label >Rating</label>
+						{{input class="form-control" placeholder="Rating" value=rating}}
+					</div>
+					<div class="form-group">
+						<label>Address</label>
+						{{input class="form-control" placeholder="Address" value=address}}
+					</div>
+					<div class="form-group">
+						<label>City</label>
+						{{input class="form-control" placeholder="City" value=city}}
+					</div>
+					<button class="btn btn-primary" {{action save this}} >Submit</button>
+				</form>
+		</script>
+		
+		<script type="text/x-handlebars" data-template-name="github">
+				<h2>Github User Listing</h2>
+		</script>
+		
+		
+	</body>
+
+</html>
