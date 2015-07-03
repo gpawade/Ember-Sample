@@ -6,7 +6,7 @@
 		<script type="text/javascript" src="lib/ember.js"></script>		
 		<script type="text/javascript" src="lib/ember-validations.min.js"></script>
 		
-		<script type="text/javascript" src="lib/routepoc.js"></script>	   
+		<script type="text/javascript" src="lib/sample1.js"></script>	   
 	</head>
 	<body>
 		
@@ -23,7 +23,9 @@
 				  		 <ul class="nav navbar-nav">
 						   <li>{{#link-to "index"}}Home{{/link-to}}</li>
 						   <li>{{#link-to "hotel"}}Hotel{{/link-to}}</li>
-						   <li>{{#link-to "github"}}Github{{/link-to}}</li>
+						   <li>
+						   	   <a href="github-sample.html">Github</a>
+						   </li>
 						 </ul>
 					 </div>
 			  </div>
@@ -77,8 +79,8 @@
 					{{#each model}}
 						<tr>
 							<td>{{{id}}}</td>
-							<td>{{name}}</td>
-							<td>{{{rating}}}</td>
+							<td>{{unbound name}}</td>
+							<td>{{rating}}</td>
 							<td>{{{address}}}</td>
 							<td>{{{city}}}</td>
 							<td>
@@ -137,6 +139,7 @@
 						{{input class="form-control" placeholder="City" value=city}}
 					</div>
 					<button class="btn btn-primary" {{action save this}} >Submit</button>
+					{{#link-to "hotel"}}&lt;&lt;Back{{/link-to}}
 				</form>
 		</script>
 		
